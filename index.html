@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboards</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .nav {
+            background: #333;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .nav button {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .nav button.active {
+            background: #007bff;
+        }
+        .nav button:hover:not(.active) {
+            background: #666;
+        }
+        .dashboard-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding-top: 60px; /* Space for the nav bar */
+            box-sizing: border-box;
+        }
+        .dashboard {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 60px);
+        }
+        .dashboard.active {
+            display: block;
+        }
+        .dashboard-title {
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            z-index: 50;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <button onclick="showDashboard('dashboard1')" class="active">Dashboard 1</button>
+        <button onclick="showDashboard('dashboard2')">Dashboard 2</button>
+        <button onclick="showDashboard('dashboard3')">Dashboard 3</button>
+    </div>
+    
+    <div class="dashboard-container">
+        <div id="dashboard1" class="dashboard active">
+            <iframe 
+                src="https://app.databox.com/datawall/62c47658f2379dc3033ff71ca2238fc84afdcd867dfa252?i" 
+                style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                frameborder="0" 
+                webkitallowfullscreen="" 
+                mozallowfullscreen="" 
+                allowfullscreen="">
+            </iframe>
+        </div>
+        
+        <div id="dashboard2" class="dashboard">
+            <iframe 
+                src="https://app.databox.com/datawall/942b2e6b06f7a7977059dbdad84167815dbb50067dfa250?i" 
+                style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                frameborder="0" 
+                webkitallowfullscreen="" 
+                mozallowfullscreen="" 
+                allowfullscreen="">
+            </iframe>
+        </div>
+        
+        <div id="dashboard3" class="dashboard">
+            <iframe 
+                src="https://app.databox.com/datawall/e206e56a9d5e35c9558d091409b23df948de26867dfa24f?i" 
+                style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                frameborder="0" 
+                webkitallowfullscreen="" 
+                mozallowfullscreen="" 
+                allowfullscreen="">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        function showDashboard(id) {
+            // Hide all dashboards
+            document.querySelectorAll('.dashboard').forEach(dash => {
+                dash.classList.remove('active');
+            });
+            
+            // Show the selected dashboard
+            document.getElementById(id).classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('.nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
